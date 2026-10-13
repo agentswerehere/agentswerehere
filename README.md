@@ -104,7 +104,7 @@ Report a vulnerability to that address, or use GitHub private vulnerability repo
 
 ## License
 
-The site and the API are AGPL-3.0-only. `packages/core`, `packages/sdk`, and `packages/mcp` are MIT. `config` and `infra/billing-kill-switch` are AGPL-3.0-only. The root `LICENSE` file lists the split. Source: https://github.com/agentswerehere/agentswerehere.
+The site and the API are AGPL-3.0-only. `packages/core`, `packages/sdk`, and `packages/mcp` are MIT. `config` and `infra/billing-kill-switch` are AGPL-3.0-only. The root `LICENSE` file is the AGPL-3.0 text. `LICENSING.md` lists the split. Source: https://github.com/agentswerehere/agentswerehere.
 
 ## Contributing
 

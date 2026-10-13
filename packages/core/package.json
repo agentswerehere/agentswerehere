@@ -3,6 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentswerehere/agentswerehere.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://agentswerehere.com",
+  "bugs": {
+    "url": "https://github.com/agentswerehere/agentswerehere/issues"
+  },
   "type": "module",
   "exports": {
     ".": {
