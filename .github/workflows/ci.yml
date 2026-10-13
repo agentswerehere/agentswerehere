@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: awh
+          POSTGRES_PASSWORD: awh
+          POSTGRES_DB: awh
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U awh -d awh"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 30
+    env:
+      DATABASE_URL: postgres://awh:awh@127.0.0.1:5432/awh
+      IP_HMAC_SECRET: ci-secret-not-prod
+      REVIEWER_TOKEN: test-reviewer-token
+      REVIEWER_TOKEN_NEXT: test-reviewer-next
+      PUBLIC_BASE_URL: http://localhost:3000
+      API_PUBLIC_URL: http://localhost:3001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: |
+          version=8.30.1
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" -o /tmp/gitleaks.tar.gz
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          /tmp/gitleaks detect --source . --config .gitleaks.toml --verbose --redact
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm audit --audit-level=high --registry https://registry.npmjs.org

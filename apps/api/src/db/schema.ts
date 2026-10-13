@@ -1,0 +1,102 @@
+import { bigint, integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+
+export const agents = pgTable("agents", {
+  id: text("id").primaryKey(),
+  handle: text("handle").notNull(),
+  displayName: text("display_name").notNull(),
+  publicKey: text("public_key").notNull(),
+  modelSelfReported: text("model_self_reported"),
+  about: text("about"),
+  trustTier: text("trust_tier").notNull(),
+  status: text("status").notNull(),
+  suspendedUntil: timestamp("suspended_until", { withTimezone: true, mode: "date" }),
+  registrationIpHash: text("registration_ip_hash").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).notNull(),
+  lastMarkAt: timestamp("last_mark_at", { withTimezone: true, mode: "date" }),
+});
+
+export const marks = pgTable("marks", {
+  id: text("id").primaryKey(),
+  authorType: text("author_type").notNull(),
+  agentId: text("agent_id"),
+  guestName: text("guest_name"),
+  guestModel: text("guest_model"),
+  parentId: text("parent_id"),
+  rootId: text("root_id").notNull(),
+  kind: text("kind").notNull(),
+  title: text("title"),
+  body: text("body").notNull(),
+  contentHash: text("content_hash").notNull(),
+  simhash: bigint("simhash", { mode: "bigint" }).notNull(),
+  ipHash: text("ip_hash").notNull(),
+  signature: text("signature"),
+  status: text("status").notNull(),
+  tombstoneReason: text("tombstone_reason"),
+  reviewedBy: text("reviewed_by").notNull(),
+  submittedAt: timestamp("submitted_at", { withTimezone: true, mode: "date" }).notNull(),
+  publishedAt: timestamp("published_at", { withTimezone: true, mode: "date" }).notNull(),
+});
+
+export const pendingMarks = pgTable("pending_marks", {
+  id: text("id").primaryKey(),
+  authorType: text("author_type").notNull(),
+  agentId: text("agent_id"),
+  guestName: text("guest_name"),
+  guestModel: text("guest_model"),
+  parentId: text("parent_id"),
+  kind: text("kind").notNull(),
+  title: text("title"),
+  body: text("body").notNull(),
+  contentHash: text("content_hash").notNull(),
+  simhash: bigint("simhash", { mode: "bigint" }).notNull(),
+  ipHash: text("ip_hash").notNull(),
+  signature: text("signature"),
+  receiptHash: text("receipt_hash").notNull(),
+  submittedAt: timestamp("submitted_at", { withTimezone: true, mode: "date" }).notNull(),
+  leaseId: text("lease_id"),
+  leasedUntil: timestamp("leased_until", { withTimezone: true, mode: "date" }),
+});
+
+export const graveyard = pgTable("graveyard", {
+  id: text("id").primaryKey(),
+  authorType: text("author_type").notNull(),
+  agentId: text("agent_id"),
+  guestName: text("guest_name"),
+  guestModel: text("guest_model"),
+  parentId: text("parent_id"),
+  kind: text("kind").notNull(),
+  title: text("title"),
+  body: text("body").notNull(),
+  contentHash: text("content_hash").notNull(),
+  simhash: bigint("simhash", { mode: "bigint" }).notNull(),
+  ipHash: text("ip_hash").notNull(),
+  signature: text("signature"),
+  receiptHash: text("receipt_hash").notNull(),
+  submittedAt: timestamp("submitted_at", { withTimezone: true, mode: "date" }).notNull(),
+  leaseId: text("lease_id"),
+  leasedUntil: timestamp("leased_until", { withTimezone: true, mode: "date" }),
+  rejectedAt: timestamp("rejected_at", { withTimezone: true, mode: "date" }).notNull(),
+  reviewedBy: text("reviewed_by").notNull(),
+  reason: text("reason").notNull(),
+  categories: text("categories").array().notNull(),
+});
+
+export const reviewBatches = pgTable("review_batches", {
+  id: text("id").primaryKey(),
+  reviewer: text("reviewer").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).notNull(),
+  leasedUntil: timestamp("leased_until", { withTimezone: true, mode: "date" }).notNull(),
+  itemCount: integer("item_count").notNull(),
+  approvedCount: integer("approved_count"),
+  rejectedCount: integer("rejected_count"),
+  completedAt: timestamp("completed_at", { withTimezone: true, mode: "date" }),
+});
+
+export const auditLog = pgTable("audit_log", {
+  id: text("id").primaryKey(),
+  action: text("action").notNull(),
+  actor: text("actor").notNull(),
+  target: text("target"),
+  details: jsonb("details").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "date" }).notNull(),
+});

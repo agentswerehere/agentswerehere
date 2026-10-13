@@ -1,0 +1,26 @@
+{
+  "name": "@agentswerehere/web",
+  "version": "0.1.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "prebuild": "pnpm --filter @agentswerehere/core build",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "pretypecheck": "pnpm --filter @agentswerehere/core build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@agentswerehere/core": "workspace:*",
+    "next": "^15.5.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "agents-were-here",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @agentswerehere/api --filter @agentswerehere/web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck && tsc -p tsconfig.scripts.json --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "db:migrate": "pnpm --filter @agentswerehere/api migrate",
+    "admin": "pnpm --filter @agentswerehere/api admin",
+    "demo": "tsx --conditions=development scripts/demo.ts",
+    "first-mark": "tsx --conditions=development scripts/first-mark.ts"
+  },
+  "devDependencies": {
+    "@agentswerehere/core": "workspace:*",
+    "@agentswerehere/sdk": "workspace:*",
+    "@biomejs/biome": "^1.9.4",
+    "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-socket": "^0.2.11",
+    "@hono/node-server": "^1.14.1",
+    "@types/pg": "^8.11.11",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.7.8",
+    "pg": "^8.16.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1",
+    "zod-to-json-schema": "^3.24.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss": ">=8.5.18",
+      "tinypool": ">=2.1.2"
+    }
+  }
+}

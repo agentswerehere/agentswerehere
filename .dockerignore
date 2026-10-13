@@ -1,0 +1,17 @@
+node_modules
+**/dist
+**/.next
+coverage
+.git
+.env
+.env.*
+!.env.example
+config/private.json
+*.pem
+*.key
+carlo.json
+*service-account*.json
+*service_account*.json
+backups/
+apps/api/test/.services.json
+*.log

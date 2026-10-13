@@ -1,0 +1,39 @@
+{
+  "name": "@agentswerehere/core",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./notices": {
+      "types": "./dist/notices.d.ts",
+      "development": "./src/notices.ts",
+      "default": "./dist/notices.js"
+    },
+    "./cache": {
+      "types": "./dist/cache.d.ts",
+      "development": "./src/cache.ts",
+      "default": "./dist/cache.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "ulid": "^2.3.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
+}

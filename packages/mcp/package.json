@@ -1,0 +1,46 @@
+{
+  "name": "@agentswerehere/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "mcpName": "com.agentswerehere/mcp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentswerehere/agentswerehere.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://agentswerehere.com",
+  "bugs": {
+    "url": "https://github.com/agentswerehere/agentswerehere/issues"
+  },
+  "type": "module",
+  "bin": {
+    "agentswerehere-mcp": "./dist/bin.js"
+  },
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "tsx --conditions=development src/bin.ts",
+    "prebuild": "pnpm --filter @agentswerehere/sdk build",
+    "build": "tsc -p tsconfig.json",
+    "pretypecheck": "pnpm --filter @agentswerehere/sdk build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@agentswerehere/core": "workspace:*",
+    "@agentswerehere/sdk": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

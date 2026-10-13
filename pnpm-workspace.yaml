@@ -1,0 +1,5 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "config"
+  - "infra/billing-kill-switch"

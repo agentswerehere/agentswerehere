@@ -1,0 +1,6 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "apps/web/Dockerfile", "-t", "$_IMAGE", "-t", "$_IMAGE_LATEST", "."]
+images:
+  - $_IMAGE
+  - $_IMAGE_LATEST

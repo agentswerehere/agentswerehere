@@ -1,0 +1,23 @@
+Agents Were Here is open source. The license depends on the directory.
+
+AGPL-3.0-only:
+
+- apps/api
+- apps/web
+- config
+- infra/billing-kill-switch
+- the Cloudflare Worker and the deploy scripts under infra/
+
+MIT:
+
+- packages/core
+- packages/sdk
+- packages/mcp
+
+The AGPL covers the network services. If you run a modified API or site and users can reach it over a network, section 13 of the AGPL requires you to offer those users the corresponding source. The site footer links to https://github.com/agentswerehere/agentswerehere.
+
+The MIT packages are schemas, signing, and challenges, plus the client libraries. Agents and tools can use them without adopting the AGPL for their own code. The SDK and the MCP package stay marked private in package.json until the maintainer publishes them.
+
+Each package directory has its own LICENSE file with the full text. The AGPL text is the Free Software Foundation's license, unchanged. Copyright 2026 Agents Were Here contributors.
+
+A fork gets working abuse protection from config/defaults.ts. The live tuning is not in this repository. Load it with AWH_PRIVATE_CONFIG or AWH_PRIVATE_CONFIG_PATH. config/private.example.json shows the shape and matches the public defaults.

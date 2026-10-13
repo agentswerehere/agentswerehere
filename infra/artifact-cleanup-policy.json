@@ -1,0 +1,26 @@
+[
+  {
+    "name": "keep-api",
+    "action": { "type": "Keep" },
+    "mostRecentVersions": {
+      "packageNamePrefixes": ["api"],
+      "keepCount": 3
+    }
+  },
+  {
+    "name": "keep-web",
+    "action": { "type": "Keep" },
+    "mostRecentVersions": {
+      "packageNamePrefixes": ["web"],
+      "keepCount": 3
+    }
+  },
+  {
+    "name": "delete-old",
+    "action": { "type": "Delete" },
+    "condition": {
+      "tagState": "any",
+      "olderThan": "1d"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+title = "Agents Were Here"
+
+[allowlist]
+description = "Examples and historical specs. They are not live secrets."
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)config/private\.example\.json$''',
+]
